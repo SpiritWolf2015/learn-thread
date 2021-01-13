@@ -24,6 +24,17 @@
 hs_err_pid*
 #------------------------JavaGitignore end------------------------
 
+#------------------------Eclipse start------------------------
+*.classpath
+*.project
+*.settings/
+#------------------------Eclipse end------------------------
+
+#------------------------idea start------------------------
+*.iml
+*.idea/
+#------------------------idea end------------------------
+
 
 #------------------------JetBrains start------------------------
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
