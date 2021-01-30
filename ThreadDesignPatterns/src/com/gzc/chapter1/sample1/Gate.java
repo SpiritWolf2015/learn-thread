@@ -15,8 +15,6 @@ public class Gate {
     private void check() {
         if (name.charAt(0) != address.charAt(0)) {
             System.out.println("***** BROKEN ***** " + toString());
-        } else {
-            System.out.println("***** OK ***** " + toString());
         }
     }
 
