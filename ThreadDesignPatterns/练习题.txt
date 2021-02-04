@@ -1,0 +1,11 @@
+练习题
+
+第3章：
+3-1
+1 true，是由不同线程调用的。
+2 false，只创建了一个实例。
+3 true
+4 true
+5 true，做错了，答案是false。
+6 true，做错了，答案是false。
+7 false,含义不同，putRequest方法的是通知在RequestQueue的this对象上的锁等待的线程，后者是在queue对象上的锁等待的线程。
