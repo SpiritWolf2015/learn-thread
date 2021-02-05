@@ -1,0 +1,24 @@
+package com.gzc.chapter4.sample;
+
+import java.io.IOException;
+
+public class SaverThread extends Thread {
+    private final Data data;
+
+    public SaverThread(String name, Data data) {
+        super(name);
+        this.data = data;
+    }
+
+    @Override
+    public void run() {
+        try {
+            while (true) {
+                data.save();            // 要求保存数据
+                Thread.sleep(1000);     // 休眠约1秒
+            }
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
