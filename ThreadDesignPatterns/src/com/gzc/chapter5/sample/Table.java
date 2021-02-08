@@ -42,7 +42,7 @@ public class Table {
         head = (head + 1) % buffer.length;
         count--;
         notifyAll();
-        System.out.println(Thread.currentThread().getName() + " takes " + cake);
+        System.out.println("-------------" + Thread.currentThread().getName() + " takes " + cake);
         return cake;
     }
 }
