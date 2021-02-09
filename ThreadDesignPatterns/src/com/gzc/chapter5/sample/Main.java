@@ -9,6 +9,8 @@ public class Main {
         test2(table);
         // OK
 //        test3(table);
+        // OK
+//        test4(table);
     }
 
     private static void test1(Table table) {
@@ -35,5 +37,10 @@ public class Main {
         new EaterThread("EaterThread-1", table, 32384).start();
         new EaterThread("EaterThread-2", table, 62643).start();
         new EaterThread("EaterThread-3", table, 38327).start();
+    }
+
+    private static void test4(Table table) {
+        new MakerThread("MakerThread-1", table, 31415).start();
+        new EaterThread("EaterThread-1", table, 32384).start();
     }
 }
