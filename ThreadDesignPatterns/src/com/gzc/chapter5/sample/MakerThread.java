@@ -18,14 +18,10 @@ public class MakerThread extends Thread {
         try {
             while (true) {
                 Thread.sleep(random.nextInt(1000));
-                String cake = "[ Cake No." + nextId() + " by " + getName() + " ]";
-                table.put(cake);
+                table.put(getName());
             }
         } catch (InterruptedException e) {
         }
     }
 
-    private static synchronized int nextId() {
-        return id++;
-    }
 }

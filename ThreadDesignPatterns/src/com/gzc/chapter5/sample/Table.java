@@ -5,6 +5,7 @@ public class Table {
     private int tail;  // 下次put的位置
     private int head;  // 下次take的位置
     private int count; // buffer中的蛋糕个数
+    private int id;
 
     public Table(int count) {
         this.buffer = new String[count];
@@ -13,16 +14,22 @@ public class Table {
         this.count = 0;
     }
 
+    public int nextId() {
+        id++;
+        return id;
+    }
+
     /**
      * 放置蛋糕
-     * @param cake
+     * @param threadName
      * @throws InterruptedException
      */
-    public synchronized void put(String cake) throws InterruptedException {
-        System.out.println(Thread.currentThread().getName() + " puts " + cake);
+    public synchronized void put(String threadName) throws InterruptedException {
         while (count >= buffer.length) {
             wait();
         }
+        String cake = "[ Cake No." + nextId() + " by " + threadName + " ]"; //注意，放蛋糕要放在while循环后面
+        System.out.println(Thread.currentThread().getName() + " puts " + cake);
         buffer[tail] = cake;
         tail = (tail + 1) % buffer.length;
         count++;
