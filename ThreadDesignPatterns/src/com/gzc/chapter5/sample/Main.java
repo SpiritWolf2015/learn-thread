@@ -5,7 +5,7 @@ public class Main {
         Table table = new Table(3);     // 创建一个能放置3个蛋糕的桌子
         // OK
 //        test1(table);
-        // 只有一个消费线程时，打印的结果显示顺序不对
+        // OK
         test2(table);
         // OK
 //        test3(table);
