@@ -14,7 +14,7 @@ public class Table {
         this.count = 0;
     }
 
-    public int nextId() {
+    private int nextId() {
         id++;
         return id;
     }
