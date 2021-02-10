@@ -3,12 +3,14 @@ package com.gzc.chapter6.sample;
 public class Data {
     private final char[] buffer;
     private final ReadWriteLock lock = new ReadWriteLock();
+
     public Data(int size) {
         this.buffer = new char[size];
         for (int i = 0; i < buffer.length; i++) {
             buffer[i] = '*';
         }
     }
+
     public char[] read() throws InterruptedException {
         lock.readLock();
         try {
@@ -17,6 +19,7 @@ public class Data {
             lock.readUnlock();
         }
     }
+
     public void write(char c) throws InterruptedException {
         lock.writeLock();
         try {
@@ -25,6 +28,7 @@ public class Data {
             lock.writeUnlock();
         }
     }
+
     private char[] doRead() {
         char[] newbuf = new char[buffer.length];
         for (int i = 0; i < buffer.length; i++) {
@@ -33,12 +37,14 @@ public class Data {
         slowly();
         return newbuf;
     }
+
     private void doWrite(char c) {
         for (int i = 0; i < buffer.length; i++) {
             buffer[i] = c;
             slowly();
         }
     }
+
     private void slowly() {
         try {
             Thread.sleep(50);

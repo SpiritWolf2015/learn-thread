@@ -7,10 +7,13 @@ public class WriterThread extends Thread {
     private final Data data;
     private final String filler;
     private int index = 0;
+
     public WriterThread(Data data, String filler) {
         this.data = data;
         this.filler = filler;
     }
+
+    @Override
     public void run() {
         try {
             while (true) {
@@ -21,6 +24,7 @@ public class WriterThread extends Thread {
         } catch (InterruptedException e) {
         }
     }
+
     private char nextchar() {
         char c = filler.charAt(index);
         index++;
