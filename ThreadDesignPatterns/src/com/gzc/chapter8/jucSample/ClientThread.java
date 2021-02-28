@@ -22,7 +22,9 @@ public class ClientThread extends Thread {
                 Thread.sleep(random.nextInt(1000));
             }
         } catch (InterruptedException e) {
+            // NONE OP
         } catch (RejectedExecutionException e) {
+            // 当ExecutorService进入终止处理后，execute方法会被拒绝（reject）执行，并抛出RejectedExecutionException
             System.out.println(getName() + " : " + e);
         }
     }

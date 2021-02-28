@@ -18,6 +18,7 @@ public class Request implements Runnable {
         try {
             Thread.sleep(random.nextInt(1000));
         } catch (InterruptedException e) {
+            // NONE OP
         }
     }
 
