@@ -9,7 +9,7 @@ public class Main {
             t.start();
 
             // 稍微间隔一段时间
-            Thread.sleep(10000);
+            Thread.sleep(10L * 1000L);
 
             // 线程的终止请求
             System.out.println("main: shutdownRequest");
