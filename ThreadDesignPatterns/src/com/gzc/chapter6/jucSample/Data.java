@@ -1,5 +1,6 @@
 package com.gzc.chapter6.jucSample;
 
+import java.util.Arrays;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -12,9 +13,7 @@ public class Data {
 
     public Data(int size) {
         this.buffer = new char[size];
-        for (int i = 0; i < buffer.length; i++) {
-            buffer[i] = '*';
-        }
+        Arrays.fill(buffer, '*');
     }
 
     public char[] read() throws InterruptedException {
@@ -36,12 +35,10 @@ public class Data {
     }
 
     private char[] doRead() {
-        char[] newbuf = new char[buffer.length];
-        for (int i = 0; i < buffer.length; i++) {
-            newbuf[i] = buffer[i];
-        }
+        char[] newBuf = new char[buffer.length];
+        System.arraycopy(buffer, 0, newBuf, 0, buffer.length);
         slowly();
-        return newbuf;
+        return newBuf;
     }
 
     private void doWrite(char c) {

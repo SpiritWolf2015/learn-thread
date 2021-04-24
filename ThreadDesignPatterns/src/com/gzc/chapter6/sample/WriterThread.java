@@ -17,15 +17,15 @@ public class WriterThread extends Thread {
     public void run() {
         try {
             while (true) {
-                char c = nextchar();
-                data.write(c);
+                data.write(nextChar());
                 Thread.sleep(random.nextInt(3000));
             }
         } catch (InterruptedException e) {
+            // NONE OP
         }
     }
 
-    private char nextchar() {
+    private char nextChar() {
         char c = filler.charAt(index);
         index++;
         if (index >= filler.length()) {
