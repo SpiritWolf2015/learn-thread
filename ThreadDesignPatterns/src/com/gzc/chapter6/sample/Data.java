@@ -5,6 +5,7 @@ import java.util.Arrays;
 public class Data {
     private final char[] buffer;
     private final ReadWriteLock lock = new ReadWriteLock();
+//    private final ReadWriteLock_Exercise6_6 lock = new ReadWriteLock_Exercise6_6();
 
     public Data(int size) {
         this.buffer = new char[size];
