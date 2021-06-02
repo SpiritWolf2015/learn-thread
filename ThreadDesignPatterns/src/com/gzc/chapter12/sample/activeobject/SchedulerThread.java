@@ -6,6 +6,7 @@ public class SchedulerThread extends Thread {
     private final ActivationQueue queue;
 
     public SchedulerThread(ActivationQueue queue) {
+        super("SchedulerThread");
         this.queue = queue;
     }
 
