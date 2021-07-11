@@ -11,7 +11,15 @@ Java多线程学习
 | Java多线程和并发知识点详细总结.pdf       |
 | 并发编程核心知识（源码分析篇 第1版）.pdf |
 
+#### JMM
 
+| Java并发编程的艺术.pdf的第3章                                |
+| ------------------------------------------------------------ |
+| Java并发编程实践.pdf的第16章                                 |
+| 图解Java多线程设计模式-第2版.pdf的附录B                      |
+| 深入理解Java内存模型_程晓明_InfoQ-完整书签.pdf               |
+| memory_model-1_0-pfd-spec.pdf，JSR133中文版.pdf              |
+| The Java Language Specification-JavaSE8.pdf的第17.4节Memory Model |
 
 #### 代码
 | code1是《Java并发编程的艺术》的源码                         |
