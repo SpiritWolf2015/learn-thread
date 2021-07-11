@@ -30,7 +30,7 @@ Java多线程学习
 
 #### 视频
 
-| 【狂神说Java】JUC并发编程最新版通俗易懂_哔哩哔哩_bilibili<br/>https://www.bilibili.com/video/BV1B7411L7tE?from=search&seid=12061330225145283400 |
+| 【狂神说Java】JUC并发编程最新版通俗易懂_哔哩哔哩_bilibili<br/>https://www.bilibili.com/video/BV1B7411L7tE |
 | ------------------------------------------------------------ |
-| 黑马程序员全面深入学习Java并发编程，JUC并发编程全套教程_哔哩哔哩_bilibili<br/>https://www.bilibili.com/video/BV16J411h7Rd?p=2&spm_id_from=pageDriver |
+| 黑马程序员全面深入学习Java并发编程，JUC并发编程全套教程_哔哩哔哩_bilibili<br/>https://www.bilibili.com/video/BV16J411h7Rd |
 
