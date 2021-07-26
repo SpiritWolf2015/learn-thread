@@ -8,34 +8,37 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 6-18
  */
 public class ConnectionPoolTest {
-    static ConnectionPool pool  = new ConnectionPool(10);
+    private static final ConnectionPool pool  = new ConnectionPool(10);
     // 保证所有ConnectionRunner能够同时开始
-    static CountDownLatch start = new CountDownLatch(1);
+    private static final CountDownLatch start = new CountDownLatch(1);
     // main线程将会等待所有ConnectionRunner结束后才能继续执行
-    static CountDownLatch end;
+    private static CountDownLatch end;
 
     public static void main(String[] args) throws Exception {
         // 线程数量，可以线程数量进行观察
-        int threadCount = 50;
+        final int threadCount = 50;
         end = new CountDownLatch(threadCount);
-        int count = 20;
+
         AtomicInteger got = new AtomicInteger();
         AtomicInteger notGot = new AtomicInteger();
+
+        final int count = 20;
         for (int i = 0; i < threadCount; i++) {
             Thread thread = new Thread(new ConnetionRunner(count, got, notGot), "ConnectionRunnerThread");
             thread.start();
         }
         start.countDown();
         end.await();
+
         System.out.println("total invoke: " + (threadCount * count));
         System.out.println("got connection:  " + got);
         System.out.println("not got connection " + notGot);
     }
 
-    static class ConnetionRunner implements Runnable {
-        int           count;
-        AtomicInteger got;
-        AtomicInteger notGot;
+    private static class ConnetionRunner implements Runnable {
+        private int count;
+        private final AtomicInteger got;
+        private final AtomicInteger notGot;
 
         public ConnetionRunner(int count, AtomicInteger got, AtomicInteger notGot) {
             this.count = count;
@@ -43,11 +46,12 @@ public class ConnectionPoolTest {
             this.notGot = notGot;
         }
 
+        @Override
         public void run() {
             try {
                 start.await();
             } catch (Exception ex) {
-
+                // NONE OP
             }
             while (count > 0) {
                 try {
@@ -66,6 +70,7 @@ public class ConnectionPoolTest {
                         notGot.incrementAndGet();
                     }
                 } catch (Exception ex) {
+                    // NONE OP
                 } finally {
                     count--;
                 }

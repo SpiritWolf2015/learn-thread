@@ -8,23 +8,25 @@ import java.util.LinkedList;
  */
 public class ConnectionPool {
 
-    private LinkedList<Connection> pool = new LinkedList<Connection>();
+    private final LinkedList<Connection> pool = new LinkedList<>();
 
     public ConnectionPool(int initialSize) {
-        if (initialSize > 0) {
-            for (int i = 0; i < initialSize; i++) {
-                pool.addLast(ConnectionDriver.createConnection());
-            }
+        if (initialSize < 1) {
+            throw new RuntimeException("initialSize=" + initialSize);
+        }
+        for (int i = 0; i < initialSize; i++) {
+            pool.addLast(ConnectionDriver.createConnection());
         }
     }
 
     public void releaseConnection(Connection connection) {
-        if (connection != null) {
-            synchronized (pool) {
-                // 添加后需要进行通知，这样其他消费者能够感知到链接池中已经归还了一个链接
-                pool.addLast(connection);
-                pool.notifyAll();
-            }
+        if (connection == null) {
+            return;
+        }
+        synchronized (pool) {
+            // 添加后需要进行通知，这样其他消费者能够感知到链接池中已经归还了一个链接
+            pool.addLast(connection);
+            pool.notifyAll();
         }
     }
 
@@ -36,7 +38,6 @@ public class ConnectionPool {
                 while (pool.isEmpty()) {
                     pool.wait();
                 }
-
                 return pool.removeFirst();
             } else {
                 long future = System.currentTimeMillis() + mills;
@@ -54,4 +55,5 @@ public class ConnectionPool {
             }
         }
     }
+
 }
