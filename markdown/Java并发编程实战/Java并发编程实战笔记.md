@@ -381,7 +381,7 @@ Vector和Hashtable（状态封装，每个方法同步），但是客户端不�
 
 #### 7.1 任务取消
 
-原因很多： 错误，超时，关闭等，Java没有安全的抢占式方法停止线程.
+原因很多： 错误，超时，关闭等，Java没有安全的抢占式方法停止线程。
 
 1. 协作机制能设置取消位，任务定期查看该标识，假如置位就提前完成任务（假如线程阻塞了，就看不到取消位，那么就停不下来了）
 
@@ -391,7 +391,7 @@ Vector和Hashtable（状态封装，每个方法同步），但是客户端不�
    >
    > Thread.sleep和Object.wait都会检查线程什么时候中断，发现时提前返回（不会立即响应，只是传递请求而已）
 
-3. 中断策略： 尽快推迟执行流程，传递给上层代码;由于每个线程拥有各自的中断策略，除非知道中断对这个线程的含义，否则不应该终端该线程
+3. 中断策略： 尽快推迟执行流程，传递给上层代码。由于每个线程拥有各自的中断策略，除非知道中断对这个线程的含义，否则不应该中断该线程
 
 4. 响应中断： 
    1. 传递异常（捕获到异常，调用interrupt）
@@ -399,9 +399,9 @@ Vector和Hashtable（状态封装，每个方法同步），但是客户端不�
    3. 不要在外部线程安排中断
 5. 通过Future实现取消
 6. 处理不可中断的阻塞
-   1. java.io中的同步Socket I/O.通过关闭Socket可以使阻塞线程抛出异常
-   2. java.io中的同步 I/O.终端一个InterruptibleChannel会抛出异常并关闭链路
-   3. 获取某个锁. Lock提供lockInterruptibly
+   1. java.io中的同步Socket I/O。通过关闭Socket可以使阻塞线程抛出异常
+   2. java.io中的同步 I/O。中断一个InterruptibleChannel会抛出异常并关闭链路
+   3. 获取某个锁。Lock提供lockInterruptibly
 
 7. 通过newTaskFor 方法进一步优化
 
@@ -409,7 +409,7 @@ Vector和Hashtable（状态封装，每个方法同步），但是客户端不�
 
 > 除非拥有某个线程，否则不能对该线程进行操作
 >
-> 对于持有线程的服务，只要服务存在时间对于创建线程的方法的存在时间，那么就应该提供生命周期的方法
+> 对于持有线程的服务，只要服务存在时间多于创建线程的方法的存在时间，那么就应该提供生命周期的方法
 
 1. 日志服务
 
@@ -427,27 +427,27 @@ Vector和Hashtable（状态封装，每个方法同步），但是客户端不�
 
 4. shutdownNow局限性
 
-   > 会尝试取消正在执行的任务，返回已提交未执行的任务
+   > 会尝试取消正在执行的任务，返回已提交但未执行的任务
 
 #### 7.3 处理非正常的线程终止
 
 > 1. try-catch
 > 2. UncaughtExceptionHandler： 检测某个线程由于未捕获的异常而终结的情况
-> 3. 通过execute提交的任务才能交给UncaughtExceptionHandler处理，submit提交的话或被包装在get里面ExecutionException
+> 3. 通过execute提交的任务才能交给UncaughtExceptionHandler处理，submit提交的话会被包装在get里面ExecutionException
 
 #### 7.4 JVM关闭
 
 > 正常关闭 ：最后一个非守护线程结束，调用System.exit（） 或者 Ctrl-C 
 >
-> 强行关闭： Runtime.halt（）  操作系统"杀死"jvm进程
+> 强行关闭： Runtime.halt（）  操作系统"杀死"JVM进程
 
 1. 关闭钩子
 
-   > 正常关闭中，JVM首先调用所有已注册的关闭钩子（通过Runtime.addShutdownHook注册单位开始的线程）.关闭应用程序线城市，如果由线程仍在运行，钩子线程并行执行.当所有钩子线程结束，如果runFinalizersOnExit为true，那么jvm经运行终结器.
+   > 正常关闭中，JVM首先调用所有已注册的关闭钩子（通过Runtime.addShutdownHook注册单位开始的线程）。关闭应用程序线程，如果有线程仍在运行，钩子线程并行执行。当所有钩子线程结束，如果runFinalizersOnExit为true，那么JVM经运行终结器。
 
 2. 守护线程
 
-   > 和普通线程差别在于线程退出的操作，如果只剩下守护线程，jvm会自动关闭，守护线程不会执行finally也不会执行回卷栈 少用
+   > 和普通线程差别在于线程退出的操作，如果只剩下守护线程，JVM会自动关闭，守护线程不会执行finally也不会执行回卷栈 少用
 
 3. 终结器
 
