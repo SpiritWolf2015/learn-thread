@@ -812,13 +812,13 @@ ReentrantReadWriteLock 实现可重入，默认非公平，写锁可以降级为
 
 1. 条件谓词：将图条件队列相关的条件谓词以及为此上等待的操作写入文档
 
-   条件等待中存在一种重要的三元关系，包括枷锁，wait和一个条件谓词
+   条件等待中存在一种重要的三元关系，包括加锁，wait和一个条件谓词
 
-   每一次调用wait都会与特定的条件谓词联系起来.调用者必须已经持有与条件队列相关的锁，并且这个锁必须保护着构成条件谓词的状态变量
+   每一次调用wait都会与特定的条件谓词联系起来，调用者必须已经持有与条件队列相关的锁，并且这个锁必须保护着构成条件谓词的状态变量
 
 2. 过早唤醒
 
-   一个线程由于调用notifyAll醒来，不意味着它的等待条件谓词已经为真.每当线程醒来必须再次测试条件谓词（使用循环）
+   一个线程由于调用notifyAll醒来，不意味着它的等待条件谓词已经为真，每当线程醒来必须再次测试条件谓词（使用循环）
 
 3. 丢失的信号
 
@@ -861,8 +861,8 @@ AQS负责管理一个整数状态信息，获取操作可以是独占也可以�
 
 #### 14.6 JUC同步器类中的AQS
 
-1. ReentrantLock 独占，实现tryAcquire tryRelease isHeldExclusively 使用cas进行获取
-2. Semaphore 和 CountDownLatch tryAcquire也是cas
+1. ReentrantLock 独占，实现tryAcquire、tryRelease、isHeldExclusively，使用CAS进行获取
+2. Semaphore 和 CountDownLatch tryAcquire也是CAS
 
 3. FutureTask 不像一个同步器，AQS同步状态用来保存任务状态
 4. ReentrantReadWriteLock 使用一个16位状态表示读取所的计数，AQS内部维护一个等待队列，记录某个线程独占访问还是共享访问
